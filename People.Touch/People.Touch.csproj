@@ -9,6 +9,8 @@
     <RootNamespace>People.Touch</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>PeopleTouch</AssemblyName>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -84,47 +86,77 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
+    <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="Views\FirstView.cs" />
-    <Compile Include="Views\FirstView.designer.cs" />
+    <Compile Include="Views\PeopleListView.cs" />
+    <Compile Include="Views\PeopleListView.designer.cs">
+      <DependentUpon>PeopleListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeopleRow.cs" />
+    <Compile Include="Views\PeopleRow.designer.cs">
+      <DependentUpon>PeopleRow.cs</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <None Include="packages.config" />
-    <InterfaceDefinition Include="Views\FirstView.xib" />
+    <InterfaceDefinition Include="Views\PeopleListView.xib" />
+    <InterfaceDefinition Include="Views\PeopleRow.xib" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\modernhttpclient.2.4.2\lib\Xamarin.iOS10\ModernHttpClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.4.2.3\lib\Xamarin.iOS10\MvvmCross.Binding.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.4.3.0\lib\Xamarin.iOS10\MvvmCross.Binding.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Binding.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.4.2.3\lib\Xamarin.iOS10\MvvmCross.Binding.iOS.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.4.3.0\lib\Xamarin.iOS10\MvvmCross.Binding.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Core.4.2.3\lib\Xamarin.iOS10\MvvmCross.Core.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Core.4.3.0\lib\Xamarin.iOS10\MvvmCross.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Core.4.2.3\lib\Xamarin.iOS10\MvvmCross.iOS.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Core.4.3.0\lib\Xamarin.iOS10\MvvmCross.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.4.2.3\lib\Xamarin.iOS10\MvvmCross.Localization.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.4.3.0\lib\Xamarin.iOS10\MvvmCross.Localization.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.2.3\lib\Xamarin.iOS10\MvvmCross.Platform.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.4.3.0\lib\Xamarin.iOS10\MvvmCross.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Platform.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.2.3\lib\Xamarin.iOS10\MvvmCross.Platform.iOS.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.4.3.0\lib\Xamarin.iOS10\MvvmCross.Platform.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.DownloadCache, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.DownloadCache.4.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.DownloadCache.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.DownloadCache.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.DownloadCache.4.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.DownloadCache.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.File.4.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.File.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.File.4.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.File.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -132,6 +164,18 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
@@ -146,4 +190,11 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
 </Project>

@@ -1,4 +1,4 @@
-// WARNING
+﻿// WARNING
 //
 // This file has been generated automatically by Xamarin Studio from the outlets and
 // actions declared in your storyboard file.
@@ -11,26 +11,18 @@ using UIKit;
 
 namespace People.Touch.Views
 {
-    [Register ("FirstView")]
-    partial class FirstView
+    [Register ("PeopleListView")]
+    partial class PeopleListView
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UILabel Label { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UITextField TextField { get; set; }
+        UIKit.UITableView PeopleTableView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (Label != null) {
-                Label.Dispose ();
-                Label = null;
-            }
-            if (TextField != null) {
-                TextField.Dispose ();
-                TextField = null;
+            if (PeopleTableView != null) {
+                PeopleTableView.Dispose ();
+                PeopleTableView = null;
             }
         }
     }

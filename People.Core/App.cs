@@ -11,7 +11,7 @@ namespace People.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<ViewModels.FirstViewModel>();
+            RegisterAppStart<ViewModels.PeopleListViewModel>();
         }
     }
 }
