@@ -19,7 +19,8 @@ namespace People.Service
 {
     public class Startup
     {
-        private readonly IHostingEnvironment _environment;
+        private readonly SecurityKey _securityKey;
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -29,11 +30,11 @@ namespace People.Service
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
 
-            _environment = env;
+            var cert = new X509Certificate2(Path.Combine(env.ContentRootPath, "people.pfx"));
+            _securityKey = new X509SecurityKey(cert);
         }
 
         public IConfigurationRoot Configuration { get; }
-        private SecurityKey _securityKey;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -41,8 +42,6 @@ namespace People.Service
             // Add framework services.
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-            var cert = new X509Certificate2(Path.Combine(_environment.ContentRootPath, "people.pfx"));
-            _securityKey = new X509SecurityKey(cert);
 
             services.AddOptions();
 

@@ -14,11 +14,13 @@ namespace People.Service.Controllers
     [Route("api/[controller]/[action]")]
     public class AccountController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly JwtIssuerOptions _jwtOptions;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<JwtIssuerOptions> jwtOptions)
+        public AccountController(UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IOptions<JwtIssuerOptions> jwtOptions)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -38,6 +40,7 @@ namespace People.Service.Controllers
             if (result)
             {
                 var principal = await _signInManager.CreateUserPrincipalAsync(user);
+
                 // Create the JWT security token and encode it.
                 var jwt = new JwtSecurityToken(
                     issuer: _jwtOptions.Issuer,
@@ -66,10 +69,10 @@ namespace People.Service.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
         {
             var result = await _userManager.CreateAsync(
-                new ApplicationUser {UserName = model.Username, Email = model.Email},
+                new ApplicationUser { UserName = model.Username, Email = model.Email },
                 model.Password);
             if (!result.Succeeded)
-            {                
+            {
                 throw new NotImplementedException();
             }
 
