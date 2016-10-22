@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using People.Service.Model;
 
 namespace People.Service.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class ContactsController : Controller
     {
         private readonly PeopleDbContext _context;

@@ -8,9 +8,10 @@ using People.Service.Model;
 namespace People.Service.Migrations
 {
     [DbContext(typeof(PeopleDbContext))]
-    partial class PeopleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161022032317_AddIdentityContext")]
+    partial class AddIdentityContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
