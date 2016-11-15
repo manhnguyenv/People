@@ -27,7 +27,7 @@ namespace People.Core.ViewModels
 
         public async void Init()
         {
-           //Contacts = await _peopleService.GetContacts();
+           Contacts = await _peopleService.GetContacts();
         }
     }
 }

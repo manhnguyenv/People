@@ -19,8 +19,12 @@ public override void ViewDidLoad()
     NavigationController.NavigationBar.Translucent = false;
     Title = "Login";
 
-    this.AddBindings(new Dictionary<object, string>() {
-        { RegisterButton, "TouchUpInside RegisterCommand" },
+    this.AddBindings(new Dictionary<object, string>()
+    {
+        {RegisterButton, "TouchUpInside RegisterCommand"},
+        {LoginButton, "TouchUpInside LoginCommand"},
+        {UsernameText, "Text Username"},
+        {PasswordText, "Text Password"}
     });
 }
     }

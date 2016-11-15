@@ -20,7 +20,15 @@ namespace People.Touch.Views
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField PasswordText { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton RegisterButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField UsernameText { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
@@ -29,9 +37,19 @@ namespace People.Touch.Views
                 LoginButton = null;
             }
 
+            if (PasswordText != null) {
+                PasswordText.Dispose ();
+                PasswordText = null;
+            }
+
             if (RegisterButton != null) {
                 RegisterButton.Dispose ();
                 RegisterButton = null;
+            }
+
+            if (UsernameText != null) {
+                UsernameText.Dispose ();
+                UsernameText = null;
             }
         }
     }

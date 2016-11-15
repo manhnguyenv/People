@@ -25,7 +25,7 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-
+        local:MvxBind="Text Username"
         android:focusableInTouchMode="true"
         android:gravity="center_vertical"
         android:hint="Username"
@@ -41,7 +41,7 @@
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-
+        local:MvxBind="Text Password"
         android:focusableInTouchMode="true"
         android:gravity="center_vertical"
         android:hint="Password"
@@ -58,7 +58,7 @@
         android:gravity="center"
         android:text="Login"
         android:padding="12dp"
-
+        local:MvxBind="Click LoginCommand"
         android:textSize="16sp" />
     </LinearLayout>
   </RelativeLayout>
@@ -70,14 +70,14 @@
     android:background="@android:color/transparent"
     android:orientation="vertical">
 
-<Button
-  android:id="@+id/sign_up_btn"
-  android:layout_width="match_parent"
-  android:gravity="center"
-  android:text="Register"
-  android:padding="12dp"
-  local:MvxBind="Click RegisterCommand"
-  android:layout_height="wrap_content"
-  android:textSize="16sp" />
+    <Button
+      android:id="@+id/sign_up_btn"
+      android:layout_width="match_parent"
+      android:gravity="center"
+      android:text="Register"
+      android:padding="12dp"
+      local:MvxBind="Click RegisterCommand"
+      android:layout_height="wrap_content"
+      android:textSize="16sp" />
   </LinearLayout>
 </LinearLayout>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,7 +20,8 @@ namespace People.Service
 {
     public class Startup
     {
-        private readonly SecurityKey _securityKey;
+        private const string SecretKey = "needtogetthisfromenvironment";
+        private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
 
         public Startup(IHostingEnvironment env)
         {
@@ -28,10 +30,7 @@ namespace People.Service
                 .AddJsonFile("appsettings.json", true, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddEnvironmentVariables();
-            Configuration = builder.Build();
-
-            var cert = new X509Certificate2(Path.Combine(env.ContentRootPath, "people.pfx"));
-            _securityKey = new X509SecurityKey(cert);
+            Configuration = builder.Build();            
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -67,7 +66,7 @@ namespace People.Service
             {
                 options.Issuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)];
                 options.Audience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)];
-                options.SigningCredentials = new SigningCredentials(_securityKey, SecurityAlgorithms.RsaSha256);
+                options.SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256);
             });
         }
 
@@ -85,7 +84,7 @@ namespace People.Service
                 ValidateAudience = true,
                 ValidAudience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)],
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = _securityKey,
+                IssuerSigningKey = _signingKey,
                 RequireExpirationTime = true,
                 ValidateLifetime = true,
                 ClockSkew = TimeSpan.Zero
