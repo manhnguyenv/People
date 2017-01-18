@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using People.Service.Model;
@@ -21,7 +22,9 @@ namespace People.Service.Controllers
         [HttpGet]
         public IEnumerable<Contact> Get()
         {
-            return _context.Contacts.ToList();
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            return _context.Contacts.Where(x=>x.OwnerId == userId).ToList();
         }
     }
 }

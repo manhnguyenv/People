@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace People.Service.Model
 {
@@ -18,6 +19,10 @@ namespace People.Service.Model
         public string PostalCode { get; set; }
         public string State { get; set; }
         public string PhotoUrl { get; set; }
+        public string OwnerId { get; set; }
+
+        [ForeignKey(nameof(OwnerId))]
+        public ApplicationUser Owner { get; set; }
 
         public Contact()
         {
